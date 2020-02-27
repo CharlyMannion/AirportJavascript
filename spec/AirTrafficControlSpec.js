@@ -2,6 +2,7 @@ describe('AirTrafficControl', function(){
   var airTrafficControl;
   var plane;
   var airport;
+
   beforeEach(function(){
     airTrafficControl = new AirTrafficControl();
     plane = jasmine.createSpy('plane')
