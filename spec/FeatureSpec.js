@@ -19,4 +19,11 @@ describe('Feature Test:', function(){
     airTrafficControl.takeOff(plane, airport);
     expect(airport.planes()).not.toContain(plane);
   });
+
+  it('blocks take off when the weather is stormy', function(){
+    airTrafficControl.land(plane, airport);
+    spyOn(airport, 'isStormy').and.returnValue(true);
+    expect(function(){ airTrafficControl.takeOff(plane, airport);}).toThrowError('cannot takeoff during storm');
+    expect(airport.planes()).toContain(plane);
+  });
 });
