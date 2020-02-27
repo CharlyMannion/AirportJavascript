@@ -26,4 +26,10 @@ describe('Feature Test:', function(){
     expect(function(){ airTrafficControl.takeOff(plane, airport);}).toThrowError('cannot takeoff during storm');
     expect(airport.planes()).toContain(plane);
   });
+
+  it('blocks landing when the weather is stormy', function(){
+    spyOn(airport, 'isStormy').and.returnValue(true);
+    expect(function(){ airTrafficControl.land(plane, airport);}).toThrowError('cannot land during storm');
+    expect(airport.planes()).not.toContain(plane);
+  });
 });
